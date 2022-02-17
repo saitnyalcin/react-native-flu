@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   },
   headerText: {
     color: "#000",
-    fontSize: 22,
+    fontSize: 44,
   },
   tinyLogo: {
     width: 400,
