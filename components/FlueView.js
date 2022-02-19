@@ -37,8 +37,8 @@ const styles = StyleSheet.create({
     fontSize: 44,
   },
   tinyLogo: {
-    width: 400,
-    height: 600,
+    width: 200,
+    height: 300,
   },
 });
 export default FlueView;
