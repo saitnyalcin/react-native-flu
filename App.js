@@ -1,26 +1,60 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-import FlueView from "./components/FlueView";
+import React, { useState } from "react";
+import {
+  Button,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 
 export default function App() {
-  const date = new Date().toLocaleString();
+  const [enteredGoal, setenteredGoal] = useState("");
+  const [courseGoals, setcourseGoals] = useState([]);
+
+  const goalInputHandler = (enteredGoal) => setenteredGoal(enteredGoal);
+
+  const addGoalHandler = () =>
+    setcourseGoals((currentGoals) => [...currentGoals, enteredGoal]);
+
   return (
     <View style={styles.container}>
-      <Text style={styles.date}>{date}</Text>
-      <FlueView />
-      <StatusBar style="auto" />
+      <TextInput
+        style={styles.textInputContainer}
+        placeholder="Course goal.."
+        onChangeText={goalInputHandler}
+        value={enteredGoal}
+      />
+      <Button title="button" onPress={addGoalHandler}></Button>
+      <ScrollView>
+        {courseGoals.map((goal) => (
+          <View key={goal} style={styles.listItem}>
+            <Text>{goal}</Text>
+          </View>
+        ))}
+      </ScrollView>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    flexDirection: "column",
+    justifyContent: "space-between",
+    padding: 100,
   },
-  date: {
-    fontSize: 22,
+  textInputContainer: {
+    borderBottomColor: "black",
+    borderWidth: "1px",
+    backgroundColor: "whitesmoke",
+    marginBottom: 10,
+    padding: 10,
+  },
+  listItem: {
+    marginTop: 10,
+    padding: 10,
+    backgroundColor: "#ccc",
+    borderColor: "black",
+    borderWidth: 1,
   },
 });
