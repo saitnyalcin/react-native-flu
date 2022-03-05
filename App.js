@@ -17,17 +17,8 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-<<<<<<< HEAD
-      <Text>Flu Application</Text>
+      <Text>new Flu Application</Text>
       <StatusBar style="auto" />
-=======
-      <GoalInput addGoalHandler={addGoalHandler} />
-      <ScrollView>
-        {courseGoals.map((goal) => (
-          <GoalItem goal={goal} onDeleteHandler={onDeleteHandler} />
-        ))}
-      </ScrollView>
->>>>>>> 2df9ef96214a08cffcc28319d5a5c010ea80c9cc
     </View>
   );
 }
