@@ -17,8 +17,12 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text>new Flu Application</Text>
-      <StatusBar style="auto" />
+      <GoalInput addGoalHandler={addGoalHandler} />
+      <ScrollView>
+        {courseGoals.map((goal) => (
+          <GoalItem goal={goal} onDeleteHandler={onDeleteHandler} />
+        ))}
+      </ScrollView>
     </View>
   );
 }
