@@ -10,7 +10,7 @@ const GoalInput = ({ addGoalHandler }) => {
     <View>
       <TextInput
         style={styles.textInputContainer}
-        placeholder="Course goal.."
+        placeholder="Course goal..."
         onChangeText={goalInputHandler}
         value={enteredGoal}
       />
