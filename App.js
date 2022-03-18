@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button, ScrollView, StyleSheet, View } from "react-native";
+import { FlatList } from "react-native-web";
 import GoalInput from "./components/GoalInput";
 import GoalItem from "./components/GoallItem";
 
@@ -8,7 +9,10 @@ export default function App() {
   const [showAddMode, setshowAddMode] = useState(false);
 
   const addGoalHandler = (goalTitle) =>
-    setcourseGoals((currentGoals) => [...currentGoals, goalTitle]);
+    setcourseGoals((currentGoals) => [...currentGoals, goalTitle], {
+      id: Math.random().toString(),
+      value: goalTitle,
+    });
 
   const onDeleteHandler = (goalId) => {
     setcourseGoals((currentGoals) =>
@@ -22,11 +26,17 @@ export default function App() {
     <View style={styles.container}>
       <Button title="Add Goal Input" onPress={showModalHandler} />
       <GoalInput showAddMode={showAddMode} addGoalHandler={addGoalHandler} />
-      <ScrollView>
-        {courseGoals.map((goal) => (
-          <GoalItem goal={goal} onDeleteHandler={onDeleteHandler} />
-        ))}
-      </ScrollView>
+      <FlatList
+        keyExtractor={(item, index) => item.id}
+        data={courseGoals}
+        renderItem={(itemData) => (
+          <GoalItem
+            id={itemData.item.id}
+            title={itemData.item.value}
+            onDeleteHandler={onDeleteHandler}
+          />
+        )}
+      />
     </View>
   );
 }
